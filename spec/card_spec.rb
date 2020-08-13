@@ -40,51 +40,51 @@ RSpec.describe Card do
         end
     end
 
-        describe 'comparing a card of differing suit' do
-            it 'is not equal' do
-                raise if subject == other
-            end
+    describe 'comparing a card of differing suit' do
+      it 'is not equal' do
+        raise if subject == other
+      end
 
-            it 'is not hash equal' do
-                raise unless Set.new([subject, other]).size == 2
-            end
-        end
-
-        describe 'comparing a card of differing rank' do
-            it 'is not equal' do
-                raise if subject == other
-            end
-
-            it 'is not hash equal' do
-                raise unless Set.new([subject, other]).size == 2
-            end
-        end
-    end
-
-    describe 'a jack' do
-      it 'ranks higher than a 10' do
-        lower = card(rank: 10)
-        higher = card(rank: :jack)
-  
-        raise unless higher.rank > lower.rank
+      it 'is not hash equal' do
+        raise unless Set.new([subject, other]).size == 2
       end
     end
-  
-    describe 'a queen' do
-      it 'ranks higher than a jack' do
-        lower = card(rank: :jack)
-        higher = card(rank: :queen)
-  
-        raise unless higher.rank > lower.rank
+
+    describe 'comparing a card of differing rank' do
+      it 'is not equal' do
+        raise if subject == other
+      end
+
+      it 'is not hash equal' do
+        raise unless Set.new([subject, other]).size == 2
       end
     end
-  
-    describe 'a king' do
-      it 'ranks higher than a queen' do
-        lower = card(rank: :queen)
-        higher = card(rank: :king)
-  
-        raise unless higher.rank > lower.rank
-      end
-    end
+end
+
+describe 'a jack' do
+  it 'ranks higher than a 10' do
+    lower = card(rank: 10)
+    higher = card(rank: :jack)
+
+    raise unless higher.rank > lower.rank
   end
+end
+  
+describe 'a queen' do
+  it 'ranks higher than a jack' do
+    lower = card(rank: :jack)
+    higher = card(rank: :queen)
+
+    raise unless higher.rank > lower.rank
+  end
+end
+  
+describe 'a king' do
+  it 'ranks higher than a queen' do
+    lower = card(rank: :queen)
+    higher = card(rank: :king)
+
+    raise unless higher.rank > lower.rank
+  end
+end
+end
