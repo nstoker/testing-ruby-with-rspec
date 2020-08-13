@@ -22,6 +22,10 @@ RSpec.describe Card do
     def subject
       @subject ||= card(suit: :spades, rank: 4)
     end
+    def other
+        @other = card(suit: :spades, rank: 5)
+    end
+
     it 'is equal to itself' do
             other = card(suit: :spades, rank: 4)
 
@@ -36,28 +40,20 @@ RSpec.describe Card do
 
         describe 'comparing a card of differing suit' do
             it 'is not equal' do
-                other = card(suit: :spades, rank: 5)
-        
                 raise if subject == other
             end
 
             it 'is not hash equal' do
-                other = card(suit: :spades, rank: 5)
-        
                 raise unless Set.new([subject, other]).size == 2
             end
         end
 
         describe 'comparing a card of differing rank' do
             it 'is not equal' do
-                other = card(suit: :spades, rank: 5)
-        
                 raise if subject == other
             end
 
             it 'is not hash equal' do
-                other = card(suit: :spades, rank: 5)
-        
                 raise unless Set.new([subject, other]).size == 2
             end
         end
