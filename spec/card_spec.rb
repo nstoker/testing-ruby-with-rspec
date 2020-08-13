@@ -19,25 +19,20 @@ RSpec.describe Card do
   end
   
   context 'equality' do
-    def subject
-      @subject ||= card(suit: :spades, rank: 4)
-    end
-    def other
-        @other = card(suit: :spades, rank: 5)
-    end
-
+    subject { @subject ||= card(suit: :spades, rank: 4) }
+    
     describe 'comparing against self' do
-    it 'is equal' do
-            other = card(suit: :spades, rank: 4)
+      let(:other){ @other = card(suit: :spades, rank: 4) }
 
-            raise unless subject == other
-        end
+      it 'is equal' do
+        raise unless subject == other
+      end
 
-        it 'is hash equal' do
-            other = card(suit: :spades, rank: 4)
+      it 'is hash equal' do
+        other = card(suit: :spades, rank: 4)
 
-            raise unless Set.new([subject, other]).size == 1
-        end
+        raise unless Set.new([subject, other]).size == 1
+      end
     end
 
     shared_examples_for 'an unequal card' do
@@ -51,45 +46,42 @@ RSpec.describe Card do
     end
 
     describe 'comparing a card of differing suit' do
-      def other
-        @other ||= card(suit: :hearts, rank: 4)
-      end
-
-      it_behaves_like 'an unequal card'
-    end    
-    describe 'comparing a card of differing rank' do
-      def other
-        @other ||= card(suit: :spades, rank: 5)
-      end
+      let(:other){ card(suit: :hearts, rank: 4) }
 
       it_behaves_like 'an unequal card'
     end
-end
 
-describe 'a jack' do
-  it 'ranks higher than a 10' do
-    lower = card(rank: 10)
-    higher = card(rank: :jack)
+    describe 'comparing a card of differing rank' do
+      let(:other){ card(suit: :spades, rank: 5) }
 
-    raise unless higher.rank > lower.rank
+      it_behaves_like 'an unequal card'
+    end
   end
-end
+
+  describe 'a jack' do
+    it 'ranks higher than a 10' do
+      lower = card(rank: 10)
+      higher = card(rank: :jack)
+ 
+      raise unless higher.rank > lower.rank
+    end
+  end
   
-describe 'a queen' do
-  it 'ranks higher than a jack' do
-    lower = card(rank: :jack)
-    higher = card(rank: :queen)
+  describe 'a queen' do
+    it 'ranks higher than a jack' do
+      lower = card(rank: :jack)
+      higher = card(rank: :queen)
 
-    raise unless higher.rank > lower.rank
+      raise unless higher.rank > lower.rank
+    end
   end
-end
-  
-describe 'a king' do
-  it 'ranks higher than a queen' do
-    lower = card(rank: :queen)
-    higher = card(rank: :king)
+    
+  describe 'a king' do
+    it 'ranks higher than a queen' do
+      lower = card(rank: :queen)
+      higher = card(rank: :king)
 
-    raise unless higher.rank > lower.rank
+      raise unless higher.rank > lower.rank
+    end
   end
-end
 end
