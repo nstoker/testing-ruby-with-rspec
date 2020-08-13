@@ -26,6 +26,7 @@ RSpec.describe Card do
         @other = card(suit: :spades, rank: 5)
     end
 
+    describe 'comparing against self' do
     it 'is equal to itself' do
             other = card(suit: :spades, rank: 4)
 
@@ -37,6 +38,7 @@ RSpec.describe Card do
 
             raise unless Set.new([subject, other]).size == 1
         end
+    end
 
         describe 'comparing a card of differing suit' do
             it 'is not equal' do
@@ -86,4 +88,3 @@ RSpec.describe Card do
       end
     end
   end
-   
