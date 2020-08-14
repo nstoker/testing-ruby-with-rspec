@@ -4,6 +4,13 @@ require 'fileutils'
 module HighCard
   DEFAULT_LOGIN = `whoami`.chomp
 
+  def self.beats?(hand, opposing)
+    winning = [hand, opposing]
+      .sort_by {|h| h.map(&:rank).sort.reverse }
+      .last
+    hand == winning
+  end
+
   class CLI
     def self.run(seed=rand(100000), *args)
       Kernel.srand seed.to_i
