@@ -2,7 +2,7 @@ require 'card'
 
 class Deck
   # All ranks from 7 to ace
-  RANKS = (6..9).to_a + [:jack, :queen, :king, :ace]
+  RANKS = (7..10).to_a + [:jack, :queen, :king, :ace]
 
   SUITS = [:hearts, :clubs, :diamonds, :spades]
 

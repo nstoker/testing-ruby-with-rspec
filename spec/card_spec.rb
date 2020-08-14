@@ -8,7 +8,7 @@ RSpec.describe Card do
       rank: 7,
     }
 
-    Card.new(**defaults.merge(params))
+    Card.build(*defaults.merge(params).values_at(:suit, :rank))
   end
 
   it 'has a suit' do
